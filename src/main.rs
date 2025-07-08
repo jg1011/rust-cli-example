@@ -1,4 +1,4 @@
-// src/main.rs
+/// src/main.rs ///
 
 use std::{
     sync::{
@@ -53,6 +53,20 @@ fn main() -> rustyline::Result<()> {
                         }
                     }
 
+                    // push-multiple <n1> <n2> ...
+                    "push-multiple" => {
+                        if args.is_empty() {
+                            println!(" → usage: push-multiple <n1> <n2> ...");
+                        } else {
+                            for num in args.iter() {
+                                match num.parse::<i32>() {
+                                    Ok(n) => stack.push(n),
+                                    Err(_) => println!(" → invalid number: {}", num),
+                                }
+                            }
+                        }
+                    }
+
                     // pop [--backwards] [n]
                     "pop" => {
                         // detect flag
@@ -99,6 +113,7 @@ fn main() -> rustyline::Result<()> {
                         println!(" → unknown command: '{}'", input);
                         println!("    Usage:");
                         println!("      push <n>");
+                        println!("      push-multiple <n1> <n2> ...");
                         println!("      pop [--backwards] [n]");
                     }
                 }

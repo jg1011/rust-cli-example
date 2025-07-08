@@ -1,0 +1,8 @@
+[package]
+name = "rust-cli-example"
+version = "0.1.0"
+edition = "2021"
+
+[dependencies]
+rustyline = "16.0.0"  
+ctrlc     = "3.4.7" 
